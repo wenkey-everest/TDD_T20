@@ -8,6 +8,8 @@
   - Batmans need to change strike on odd numbers and on over change.
   - only legal balls are counted.
   - when player gets out new player is need to take the strike.
+  - random number case need to be considered
+
 
 ## Setup in your local machine
 
