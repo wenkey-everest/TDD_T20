@@ -4,7 +4,8 @@
   "description": "a tdd tests for t20 assignment",
   "main": "index.html",
   "scripts": {
-    "test": "test"
+    "test": "jest build/*.test.js",
+    "compile": "tsc"
   },
   "repository": {
     "type": "git",
