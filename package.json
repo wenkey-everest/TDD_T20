@@ -1,0 +1,25 @@
+{
+  "name": "tdd_t20",
+  "version": "1.0.0",
+  "description": "a tdd tests for t20 assignment",
+  "main": "index.html",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/wenkeygm/TDD_T20.git"
+  },
+  "author": "wenkey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wenkeygm/TDD_T20/issues"
+  },
+  "homepage": "https://github.com/wenkeygm/TDD_T20#readme",
+  "dependencies": {
+    "@types/jest": "^27.0.2",
+    "jest": "^27.2.5",
+    "live-server": "^1.1.0",
+    "typescript": "^4.4.3"
+  }
+}
