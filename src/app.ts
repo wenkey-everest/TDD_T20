@@ -19,8 +19,6 @@ let probablity:any=[{"Dot":.05,1:.3, 2:.25, 3:.1, 4:.15, 5:.01, 6:.09,"out":.05}
 let oneBall:number;
 let oneOver:number;
 let total_balls:number=0;
-
-
 function randTest(spec:any):any {
     var i, sum=0, r=Math.random();
     for (i in spec) {
@@ -28,7 +26,13 @@ function randTest(spec:any):any {
       if (r <= sum) return i;
     }
   }  
-
+  function swap(strike:string, playPerson:string){
+    let temp:string;
+    temp=strike;
+    strike=playPerson;
+    playPerson=temp;
+    return strike;
+  }
 function ballsRemaining(){
     console.log("Sample Commentary");
     for( oneOver=0; oneOver<=3; oneOver++){
@@ -50,114 +54,123 @@ function ballsRemaining(){
                       break;
                   default:
               }
-          strikeChangingWithScore(score);
-          strikeChangingWithOver();
+          
+          // strikeChangingWithScore(score);
+          // strikeChangingWithOver();
+          playerOut();
 }
     }
   }
     return total_balls;
 }
-function strikeChangingWithOver(){
-  let temp:string;
+
+function strikeChangingWithOver(oneBall:number,oneOver:number, strike:string, playPerson:string){
   if((oneBall==1) && (oneOver!==0)){
-    temp=strike;
-    strike=playPerson;
-    playPerson=temp;
+   let temp:string=strike;
+            strike=playPerson;
+            playPerson=temp;
 }return strike;
 }
-
-function strikeChangingWithScore(score:number){
-    if((score==1) || (score==3) || (score==5)){
-      let temp:string;
-      if(strike==playerNames[0]){
-          p1Score= +p1Score + +score;
-          p1balls= +p1balls + 1;
-           switch (playPerson) {
-               case "N.s Nodhi":
-                  temp=strike;
-                  strike=playPerson;
-                  playPerson=temp;
-                  break; 
-              case "R Rumrah":
-                  temp=strike;
-                  strike=playPerson;
-                  playPerson=temp;
-                  break;
-              case "Shashi Henra":
-                  temp=strike;
-                  strike=playPerson;
-                  playPerson=temp;
-                  break;
-              default:
-  }
-      }else
-      if(strike==playerNames[1]){
-          p2Score= +p2Score + +score;
-          p2balls= +p2balls + 1;
-      switch (playPerson) {
-          case "kirat Boli":
-              temp=strike;
-                  strike=playPerson;
-                  playPerson=temp;
-              break;
-          case "R Rumrah":
-              temp=strike;
-                  strike=playPerson;
-                  playPerson=temp;
-              break;
-          case "Shashi Henra":
-              temp=strike;
-                  strike=playPerson;
-                  playPerson=temp;
-              break;
-          default:
-  }
-      }else if(strike==playerNames[2]){
-          p3Score= +p3Score + +score;
-          p3balls= +p3balls + 1;
-       switch (playPerson) {
-          case "kirat Boli":
-                  temp=strike;
-                  strike=playPerson;
-                  playPerson=temp;
-              break;
-          case "N.s Nodhi":
-              temp=strike;
-                  strike=playPerson;
-                  playPerson=temp;
-              break; 
-          case "Shashi Henra":
-                  temp=strike;
-                  strike=playPerson;
-                  playPerson=temp;
-              break;
-          default:     
-  }
-  }else if(strike==playerNames[3]){
-      p4Score= +p4Score + +score;
-      p4balls= +p4balls + 1;
-      switch (playPerson) {
-          case "kirat Boli":
-              temp=strike;
-                  strike=playPerson;
-                  playPerson=temp;
-              break;
-          case "N.s Nodhi":
-              temp=strike;
-                  strike=playPerson;
-                  playPerson=temp;
-              break; 
-          case "R Rumrah":
-              temp=strike;
-                  strike=playPerson;
-                  playPerson=temp;
-              break;
-          default:           
-  }
-  }
-  }return strike;
+function strikeChangingWithScore(score:number,strike:string,playPerson:string){
+  let temp:string;
+  if(strike==playerNames[0]){
+    p1Score= +p1Score + +score;
+    p1balls= +p1balls + 1;
+     switch (playPerson) {
+         case "N.s Nodhi":
+            temp=strike;
+            strike=playPerson;
+            playPerson=temp;
+            break; 
+        case "R Rumrah":
+            temp=strike;
+            strike=playPerson;
+            playPerson=temp;
+            break;
+        case "Shashi Henra":
+            temp=strike;
+            strike=playPerson;
+            playPerson=temp;
+            break;
+        default:
+}
+}else
+if(strike==playerNames[1]){
+    p2Score= +p2Score + +score;
+    p2balls= +p2balls + 1;
+switch (playPerson) {
+    case "kirat Boli":
+        temp=strike;
+            strike=playPerson;
+            playPerson=temp;
+        break;
+    case "R Rumrah":
+        temp=strike;
+            strike=playPerson;
+            playPerson=temp;
+        break;
+    case "Shashi Henra":
+        temp=strike;
+            strike=playPerson;
+            playPerson=temp;
+        break;
+    default:
+}
+}else if(strike==playerNames[2]){
+    p3Score= +p3Score + +score;
+    p3balls= +p3balls + 1;
+ switch (playPerson) {
+    case "kirat Boli":
+            temp=strike;
+            strike=playPerson;
+            playPerson=temp;
+        break;
+    case "N.s Nodhi":
+        temp=strike;
+           strike=playPerson;
+            playPerson=temp;
+        break; 
+    case "Shashi Henra":
+            temp=strike;
+            strike=playPerson;
+            playPerson=temp;
+        break;
+    default:     
+}
+}return strike;
+}
+function playerOut(){
+  if(score=="out"){
+    let j:number=0;
+      if(strike==playerNames[j]){
+          strike=playerNames[j+2];
+          playPerson=playerNames[j+1];
+          wicket++;
+          return;
+      }else if(strike==playerNames[j+1]){
+          if(playPerson!==playerNames[j+2]){
+          strike=playerNames[j+2];
+          playPerson=playerNames[j];
+          wicket++;
+          }else{
+          strike=playerNames[j+3];
+          wicket++;
+          }return;
+      }else if(strike==playerNames[j+2]){ 
+          strike=playerNames[j+3];
+          playPerson=playerNames[j+1];
+          wicket++;     
+          return;
+      }else if(wicket==3){
+          console.log('Banglore lost the match...');
+          return;
+      }
+      return;
+}
 }
 export{ballsRemaining};
 export{randTest};
 export{strikeChangingWithScore};
 export{strikeChangingWithOver};
+export{playerOut};
+export{swap};
