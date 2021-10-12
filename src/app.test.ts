@@ -1,4 +1,4 @@
-import {ballsRemaining, randTest, strikeChangingWithScore, strikeChangingWithOver} from "./app"
+import {ballsRemaining, randTest, strikeChangingWithScore, strikeChangingWithOver, playerOut,swap} from "./app"
 let playerNames:string[]=["kirat Boli", "N.s Nodhi", "R Rumrah", "Shashi Henra"];
 let probablity:Array<any> = [
     {"Dot":.05,1:.3, 2:.25, 3:.1, 4:.15, 5:.01, 6:.09,"out":.05},
@@ -23,13 +23,18 @@ test("testing of random numbers for score call",()=>{
             expect(parseInt(temp)).toBeGreaterThanOrEqual(1);
         }
     })
-test("changing the strike is failed in run case",()=>{
-         const score:number=ballsRemaining();
-         const scoreStrike:string = strikeChangingWithScore(score);  
-         expect(playerNames).toContain(scoreStrike);
-    
+test("changing the strike is failed in odd run case",()=>{
+         for(let i:number=1;i<6;i=i+2){
+                    const scoreStrike= strikeChangingWithScore(i,playerNames[0], playerNames[1]); 
+                    const swapping = swap(playerNames[0],playerNames[1]);
+                    expect(swapping).toEqual(scoreStrike);
+        
+         }
 })
 test("changing of strike is failed in over case",()=>{
-        const strikeOver=strikeChangingWithOver();
-        expect(playerNames).toContain(strikeOver);
+        const strikeOver=strikeChangingWithOver(1,1,playerNames[0],playerNames[1]);
+        const swapping=swap(playerNames[0],playerNames[1]);
+        expect(swapping).toEqual(strikeOver);
 });
+
+
