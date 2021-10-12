@@ -57,7 +57,7 @@ function ballsRemaining(){
           
           // strikeChangingWithScore(score);
           // strikeChangingWithOver();
-          playerOut();
+         
 }
     }
   }
@@ -139,38 +139,10 @@ switch (playPerson) {
 }
 }return strike;
 }
-function playerOut(){
-  if(score=="out"){
-    let j:number=0;
-      if(strike==playerNames[j]){
-          strike=playerNames[j+2];
-          playPerson=playerNames[j+1];
-          wicket++;
-          return;
-      }else if(strike==playerNames[j+1]){
-          if(playPerson!==playerNames[j+2]){
-          strike=playerNames[j+2];
-          playPerson=playerNames[j];
-          wicket++;
-          }else{
-          strike=playerNames[j+3];
-          wicket++;
-          }return;
-      }else if(strike==playerNames[j+2]){ 
-          strike=playerNames[j+3];
-          playPerson=playerNames[j+1];
-          wicket++;     
-          return;
-      }else if(wicket==3){
-          console.log('Banglore lost the match...');
-          return;
-      }
-      return;
-}
-}
+
 export{ballsRemaining};
 export{randTest};
 export{strikeChangingWithScore};
 export{strikeChangingWithOver};
-export{playerOut};
+
 export{swap};
