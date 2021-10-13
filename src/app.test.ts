@@ -42,6 +42,11 @@ test("The strike is not replaced by the new player when wicket is fallen",()=>{
     expect(pOut).toEqual(playerNames[2]);
 });
 
+test("When Dot is occured the run is added",()=>{
+    const dot=dotBalls("Dot",playerNames[0],30);
+    expect(dot).toBe(30);
+})
+
 
 
 
