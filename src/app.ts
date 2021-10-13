@@ -55,7 +55,7 @@ function scoreBoard(){
                       break;
                   default:
               }
-              console.log(wicket);
+              
             //   strikeChangingWithOver();
             if(wicket!==3){
             console.log(+oneOver+"."+oneBall+" "+strike+ " scores " +score);
