@@ -47,6 +47,14 @@ test("When Dot is occured the run is added",()=>{
     expect(dot).toBe(30);
 })
 
+test("score and balls are not incrementing while player on strike",()=>{
+    const eve=evenScore(playerNames[1],6,0,0);
+    expect(eve).toStrictEqual([6,1]);
+})
 
+test("total score is above 40 but still playing",()=>{
+    const tot = totalScore(2,3,4,5); 
+    expect(tot).toBeLessThanOrEqual(41)
+})
 
 
