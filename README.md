@@ -16,3 +16,8 @@
     npm install
     yarn compile
     yarn test
+
+## Working methog
+
+  - Remove comments from the function to make it work.
+  - It was done for TDD approach.
