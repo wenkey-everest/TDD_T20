@@ -55,16 +55,45 @@ function scoreBoard(){
                       break;
                   default:
               }
-          console.log(+oneOver+"."+oneBall+" "+strike+ " scores " +score);
-        // strikeChangingWithScore(score);
-        // strikeChangingWithOver();
-        // playerOut();
-       
+              console.log(wicket);
+            //   strikeChangingWithOver();
+            if(wicket!==3){
+            console.log(+oneOver+"."+oneBall+" "+strike+ " scores " +score);
+                }
+          
+            // if((score==1)||(score==3)||(score==5)){
+            //     strikeChangingWithScore(score);
+            // }else if(score=="out"){
+            //     playerOut();
+            // }else if(score=="Dot"){
+            //     dotBalls();
+            // }else{
+            //     evenScore();
+            // }  
+            // if(wicket==3){
+            //     break;
+            // }   
         
 }
+//totalScore();
     }
-   
+    if(wicket!==3){
+        switch(oneOver){
+         case 0:
+             console.log("3 overs left, " +remScore+ " runs to win");
+             break;   
+         case 1:
+             console.log("2 overs left, " +remScore+ " runs to win");
+             break;
+         case 2:
+             if(remScore>=0){
+             console.log("1 overs left, " +remScore+ " runs to win");
+             }
+             break;    
+        }
+        }
   }
+ 
     return total_balls;
 }
 //function strikeChangingWithOver(){
@@ -146,7 +175,6 @@ switch (playPerson) {
 }
 //function playerOut(){
 function playerOut(strike:string,score:string){ //USE THIS FOR TESTING 
-  if(score=="out"){
      let j:number=0;
       if(strike==playerNames[j]){
           strike=playerNames[j+2];
@@ -165,18 +193,16 @@ function playerOut(strike:string,score:string){ //USE THIS FOR TESTING
           strike=playerNames[j+3];
           playPerson=playerNames[j+1];
           wicket++;     
-          
-      }else if(wicket==3){
+      }else {
           console.log('Banglore lost the match...');
           return;
       }
-      
+     return strike; 
 }
-return strike;
-}
+
+
  function dotBalls(score:string,strike:string,p1Score:number){ //USE THIS FOR TESTING 
-  //function dotBalls(){
-  if(score=="Dot"){    
+ // function dotBalls(){  
     switch (strike) {
         case "kirat Boli":
             p1Score = p1Score;
@@ -191,9 +217,10 @@ return strike;
             p4Score = p4Score;
             break;
     default:
-}}
+}
 return p1Score;
 }
+
 //function evenScore(){
 function evenScore(strike:string, score:number,p1Score:number,p1balls:number){ //USE THIS FOR TESTING 
   switch (strike) {     
@@ -217,34 +244,19 @@ function evenScore(strike:string, score:number,p1Score:number,p1balls:number){ /
 }
 return [p2Score,p2balls];
 }
-// function totalScore(){
+//function totalScore(){
 function totalScore(p1Score:number,p2Score:number,p3Score:number,p4Score:number){ //USE THIS FOR TESTING 
-    if(score!=="out"){
     total_score = +p1Score + +p2Score + +p3Score + +p4Score; 
     remScore=score_need-total_score;
     rem_balls=total_ball-total_balls;
-    if(wicket!==3){
-        switch(oneOver){
-         case 0:
-             console.log("3 overs left, " +remScore+ " runs to win");
-             break;   
-         case 1:
-             console.log("2 overs left, " +remScore+ " runs to win");
-             break;
-         case 2:
-             if(remScore>=0){
-             console.log("1 overs left, " +remScore+ " runs to win");
-             }
-             break;    
-        }
-        }
-}
-        return total_score;
+    return total_score;
 }
 function display():void{
     let outPlayer=total_wickets-wicket;
-    if(wicket!==3){
+    if((wicket!==3) || (remScore==0)){
     console.log("Banglore won by "+ outPlayer +"wickets and "+rem_balls+" balls ");
+    }else{
+        console.log("Banglore lost the mastch..");
     }
     if((strike==playerNames[0]) && (playPerson==playerNames[1] )){
             console.log("Kirat Boli* - "+p1Score+"( "+p1balls+" ) ");
@@ -283,6 +295,7 @@ function display():void{
             console.log("Shashi Henra - "+p4Score+"( "+p4balls+" ) "); 
         }
     }
+
 // scoreBoard();
 // display();
    
