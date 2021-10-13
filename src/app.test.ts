@@ -1,4 +1,4 @@
-import {ballsRemaining, randTest, strikeChangingWithScore, strikeChangingWithOver, playerOut,swap} from "./app"
+import {scoreBoard, randTest, strikeChangingWithScore, strikeChangingWithOver, playerOut, swap, dotBalls, evenScore, totalScore} from "./app"
 let playerNames:string[]=["kirat Boli", "N.s Nodhi", "R Rumrah", "Shashi Henra"];
 let probablity:Array<any> = [
     {"Dot":.05,1:.3, 2:.25, 3:.1, 4:.15, 5:.01, 6:.09,"out":.05},
@@ -7,7 +7,7 @@ let probablity:Array<any> = [
     {"Dot":.3,1:.25, 2:.05, 3:0, 4:.05, 5:.01, 6:.04,"out":.3}];
 
 test("test for number of balls left is 24", ()=>{
-    const totalBall=ballsRemaining();
+    const totalBall=scoreBoard();
     expect(totalBall).toBe(24);
 })
 
@@ -25,9 +25,9 @@ test("testing of random numbers for score call",()=>{
     })
 test("changing the strike is failed in odd run case",()=>{
          for(let i:number=1;i<6;i=i+2){
-                    const scoreStrike= strikeChangingWithScore(i,playerNames[0], playerNames[1]); 
-                    const swapping = swap(playerNames[0],playerNames[1]);
-                    expect(swapping).toEqual(scoreStrike);
+                const scoreStrike= strikeChangingWithScore(i,playerNames[0], playerNames[1]); 
+                const swapping = swap(playerNames[0],playerNames[1]);
+                expect(swapping).toEqual(scoreStrike);
         
          }
 })
@@ -36,5 +36,12 @@ test("changing of strike is failed in over case",()=>{
         const swapping=swap(playerNames[0],playerNames[1]);
         expect(swapping).toEqual(strikeOver);
 });
+
+test("The strike is not replaced by the new player when wicket is fallen",()=>{
+    const pOut= playerOut(playerNames[0],"out");
+    expect(pOut).toEqual(playerNames[2]);
+});
+
+
 
 
