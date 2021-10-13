@@ -33,8 +33,9 @@ function randTest(spec:any):any {
     playPerson=temp;
     return strike;
   }
-function ballsRemaining(){
-    console.log("Sample Commentary");
+function scoreBoard(){
+     console.log("Sample commentary");
+        console.log("4 overs left, " +score_need+ " runs to win");
     for( oneOver=0; oneOver<=3; oneOver++){
         for( oneBall=1; oneBall<=6; oneBall++){
             total_balls++;
@@ -54,24 +55,28 @@ function ballsRemaining(){
                       break;
                   default:
               }
-          
-          // strikeChangingWithScore(score);
-          // strikeChangingWithOver();
-         
+          console.log(+oneOver+"."+oneBall+" "+strike+ " scores " +score);
+        // strikeChangingWithScore(score);
+        // strikeChangingWithOver();
+        // playerOut();
+       
+        
 }
     }
+    //  totalScore();
   }
     return total_balls;
 }
-
-function strikeChangingWithOver(oneBall:number,oneOver:number, strike:string, playPerson:string){
+//function strikeChangingWithOver(){
+function strikeChangingWithOver(oneBall:number,oneOver:number, strike:string, playPerson:string){ //USE THIS FOR TESTING 
   if((oneBall==1) && (oneOver!==0)){
    let temp:string=strike;
             strike=playPerson;
             playPerson=temp;
 }return strike;
 }
-function strikeChangingWithScore(score:number,strike:string,playPerson:string){
+//function strikeChangingWithScore(score:number){
+function strikeChangingWithScore(score:number,strike:string,playPerson:string){ //USE THIS FOR TESTING 
   let temp:string;
   if(strike==playerNames[0]){
     p1Score= +p1Score + +score;
@@ -139,10 +144,157 @@ switch (playPerson) {
 }
 }return strike;
 }
+//function playerOut(){
+function playerOut(strike:string,score:string){ //USE THIS FOR TESTING 
+  if(score=="out"){
+     let j:number=0;
+      if(strike==playerNames[j]){
+          strike=playerNames[j+2];
+          playPerson=playerNames[j+1];
+          wicket++;
+      }else if(strike==playerNames[j+1]){
+          if(playPerson!==playerNames[j+2]){
+          strike=playerNames[j+2];
+          playPerson=playerNames[j];
+          wicket++;
+          }else{
+          strike=playerNames[j+3];
+          wicket++;
+          }
+      }else if(strike==playerNames[j+2]){ 
+          strike=playerNames[j+3];
+          playPerson=playerNames[j+1];
+          wicket++;     
+          
+      }else if(wicket==3){
+          console.log('Banglore lost the match...');
+          return;
+      }
+      
+}
+return strike;
+}
+ function dotBalls(score:string,strike:string,p1Score:number){ //USE THIS FOR TESTING 
+  //function dotBalls(){
+  if(score=="Dot"){    
+    switch (strike) {
+        case "kirat Boli":
+            p1Score = p1Score;
+            break;
+        case "N.s Nodhi":
+            p2Score = p2Score;
+            break; 
+        case "R Rumrah":
+            p3Score = p3Score;
+            break;
+        case "Shashi Henra":
+            p4Score = p4Score;
+            break;
+    default:
+}}
+return p1Score;
+}
+//function evenScore(){
+function evenScore(strike:string, score:number,p1Score:number,p1balls:number){ //USE THIS FOR TESTING 
+  switch (strike) {     
+    case "kirat Boli":
+            p1Score= +p1Score + +score;
+            p1balls= +p1balls + 1;
+        break;
+    case "N.s Nodhi":
+            p2Score= +p2Score + +score;
+            p2balls= +p2balls + 1;
+        break; 
+    case "R Rumrah":
+            p3Score= +p3Score + +score;
+            p3balls= +p3balls + 1;
+        break;
+    case "Shashi Henra":
+            p4Score= +p4Score + +score;
+            p4balls= +p4balls + 1;
+        break;
+    default:
+}
+return [p2Score,p2balls];
+}
+// function totalScore(){
+function totalScore(p1Score:number,p2Score:number,p3Score:number,p4Score:number){ //USE THIS FOR TESTING 
+    if(score!=="out"){
+    total_score = +p1Score + +p2Score + +p3Score + +p4Score; 
+    remScore=score_need-total_score;
+    rem_balls=total_ball-total_balls;
+    if(wicket!==3){
+        switch(oneOver){
+         case 0:
+             console.log("3 overs left, " +remScore+ " runs to win");
+             break;   
+         case 1:
+             console.log("2 overs left, " +remScore+ " runs to win");
+             break;
+         case 2:
+             if(remScore>=0){
+             console.log("1 overs left, " +remScore+ " runs to win");
+             }
+             break;    
+        }
+        }
+}
+        return total_score;
+}
+function display():void{
+    let outPlayer=total_wickets-wicket;
+    if(wicket!==3){
+    console.log("Banglore won by "+ outPlayer +"wickets and "+rem_balls+" balls ");
+    }
+    if((strike==playerNames[0]) && (playPerson==playerNames[1] )){
+            console.log("Kirat Boli* - "+p1Score+"( "+p1balls+" ) ");
+            console.log("N.s Nodhi* - "+p2Score+"( "+p2balls+" ) ");
+            console.log("R Rumrah - "+p3Score+"( "+p3balls+" ) ");
+            console.log("Shashi Henra - "+p4Score+"( "+p4balls+" ) ");
+        }else if((strike==playerNames[1]) && (playPerson==playerNames[2] )){           
+            console.log("Kirat Boli - "+p1Score+"( "+p1balls+" ) ");
+            console.log("N.s Nodhi* - "+p2Score+"( "+p2balls+" ) ");
+            console.log("R Rumrah* - "+p3Score+"( "+p3balls+" ) ");
+            console.log("Shashi Henra - "+p4Score+"( "+p4balls+" ) ");
+        }else if((strike==playerNames[2]) && (playPerson==playerNames[3] )){                      
+            console.log("Kirat Boli - "+p1Score+"( "+p1balls+" ) ");
+            console.log("N.s Nodhi - "+p2Score+"( "+p2balls+" ) ");
+            console.log("R Rumrah* - "+p3Score+"( "+p3balls+" ) ");
+            console.log("Shashi Henra* - "+p4Score+"( "+p4balls+" ) ");
+        }else if((strike==playerNames[1]) && (playPerson==playerNames[3] )){        
+            console.log("Kirat Boli - "+p1Score+"( "+p1balls+" ) ");
+            console.log("N.s Nodhi* - "+p2Score+"( "+p2balls+" ) ");
+            console.log("R Rumrah - "+p3Score+"( "+p3balls+" ) ");
+            console.log("Shashi Henra* - "+p4Score+"( "+p4balls+" ) ");
+        }else if((strike==playerNames[0]) && (playPerson==playerNames[2] )){         
+            console.log("Kirat Boli* - "+p1Score+"( "+p1balls+" ) ");
+            console.log("N.s Nodhi - "+p2Score+"( "+p2balls+" ) ");
+            console.log("R Rumrah* - "+p3Score+"( "+p3balls+" ) ");
+            console.log("Shashi Henra - "+p4Score+"( "+p4balls+" ) ");
+        }else if((strike==playerNames[0]) && (playPerson==playerNames[2] )){
+            console.log("Kirat Boli* - "+p1Score+"( "+p1balls+" ) ");
+            console.log("N.s Nodhi - "+p2Score+"( "+p2balls+" ) ");
+            console.log("R Rumrah - "+p3Score+"( "+p3balls+" ) ");
+            console.log("Shashi Henra* - "+p4Score+"( "+p4balls+" ) ");
+        }else{
+            console.log("Kirat Boli - "+p1Score+"( "+p1balls+" ) ");
+            console.log("N.s Nodhi - "+p2Score+"( "+p2balls+" ) ");
+            console.log("R Rumrah - "+p3Score+"( "+p3balls+" ) ");
+            console.log("Shashi Henra - "+p4Score+"( "+p4balls+" ) "); 
+        }
+    }
+// scoreBoard();
+// display();
+   
 
-export{ballsRemaining};
+   
+
+export{scoreBoard};
 export{randTest};
-export{strikeChangingWithScore};
+export{strikeChangingWithScore};         //USE THESE FOR TESTING
 export{strikeChangingWithOver};
-
+export{playerOut};
 export{swap};
+export{dotBalls}
+export{evenScore}
+export{totalScore}
