@@ -63,7 +63,7 @@ function scoreBoard(){
         
 }
     }
-    //  totalScore();
+   
   }
     return total_balls;
 }
